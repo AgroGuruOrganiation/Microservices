@@ -162,6 +162,7 @@ This ML model gives predicted result based on request parameters
 
 
 
+
 ## Tools Used 
 
 various tools like  `Rabbit MQ` `Docker` `Nginx`
@@ -170,4 +171,4 @@ various tools like  `Rabbit MQ` `Docker` `Nginx`
 
 ## System design 
 
-
+![Agro-Connect-Architecture Diagram (1)](https://github.com/user-attachments/assets/46dcda74-833b-48e5-bc14-1cf4761cae16)
