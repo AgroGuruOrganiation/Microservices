@@ -1,0 +1,84 @@
+version: 1.0.0
+
+services:
+  message-broker:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - 15672:15672
+      - 5672:5672
+  
+    expose:
+      - 5672
+      - 15672
+    networks:
+        - agroguru-networks
+
+  image-upload-service:
+    depends_on: 
+      - message-broker
+    container_name: node-server-image-upload
+    build: ./AWS-S3-Service
+    image: image-upload-image
+    env_file:
+      - ./AWS-S3-Service/src/.env
+    networks:
+      - agroguru-networks
+    restart: always
+    links:
+      - message-broker
+   
+  market-services:
+    depends_on: 
+      - message-broker
+    container_name: node-server-market
+    build: ./Market-Service
+    image: market-service-image
+    env_file:
+      - ./Market-Service/src/.env
+    restart: always
+    ports:
+      - 8002:8002
+    networks:
+      - agroguru-networks
+    links:
+      - message-broker
+
+
+  user-services:
+    depends_on: 
+      - message-broker
+    container_name: node-server-user
+    restart: always
+    build: ./User-Service
+    image: user-service-image
+    env_file:
+      - ./User-Service/src/.env
+    ports:
+      - 8001:8001
+    networks:
+      - agroguru-networks
+ 
+    
+  nginx:
+    depends_on:
+      - message-broker
+      - user-services
+      - market-services
+    build: ./Nginx
+    container_name: nginx
+    restart: always
+    image: nginx-server
+    links : 
+      - user-services
+      - market-services
+    ports:
+      - 8080:80
+    networks:
+      - agroguru-networks
+  
+
+
+networks:
+  agroguru-networks:
+    driver: bridge
