@@ -162,6 +162,10 @@ This ML model gives predicted result based on request parameters
 
 
 
+# Architecture Diagram 
+
+![image UEIEU2](https://github.com/user-attachments/assets/c02cd3c8-60b5-4f0d-b426-4c4f7a49c002)
+
 
 ## Tools Used 
 
