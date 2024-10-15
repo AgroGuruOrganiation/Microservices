@@ -142,7 +142,7 @@ This Service works for Market Facilities provided to user
 
 ## AWS Image Upload Service 
 
-This Service works as RPC for Image Uploding  
+This Service works asynchronously for Image Uploding  
 
 ``` bash
 1] Upload Images on AWS S3 Bucket
