@@ -158,7 +158,7 @@ This ML model gives predicted result based on request parameters
 2] Save user result for further Prediction 
 ```
 
-### Above services has their own databases makes them independent. `CQRS` design pattern is used 
+### Above services has their own databases makes them independent. 
 
 
 
